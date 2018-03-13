@@ -78,7 +78,7 @@ class App extends Component {
           <td>{key}</td>
           <td>{userGroup[key].full_name}</td>
           <td>{userGroup[key].data.cryptocurrency_trading_symbol}</td>
-          <td>Test</td>
+          <td><img src={`/images/${userGroup[key].data.cryptocurrency_trading_symbol}.png`}></img></td>
           <td>{userGroup[key].data.cryptocurrency_name}</td>
           <td>{"$" + userGroup[key].data.cryptocurrency_token_balance}</td>
           <td>{"$" + this.state.coinPrices[index]}</td>
@@ -93,7 +93,7 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <div className="row">
-            <table className="table table-dark table-responsive">
+            <table className="table table-responsive">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -103,7 +103,7 @@ class App extends Component {
                   <th scope="col">Coin Name</th>
                   <th scope="col">Balance</th>
                   <th scope="col">Current Value</th>
-                  <th scope="col">Percent Change</th>
+                  <th scope="col">Past Value</th>
                   <th scope="col">Percent Difference</th>
                   <th scope="col">Value of Change</th>
                 </tr>
