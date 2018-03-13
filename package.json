@@ -2,7 +2,7 @@
   "name": "crypto-table",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://zjmitche.github.io/crypto-table/",
+  "homepage": "https://cleverbaker.github.io/crypto-table/",
   "dependencies": {
     "axios": "^0.18.0",
     "gh-pages": "^1.1.0",
