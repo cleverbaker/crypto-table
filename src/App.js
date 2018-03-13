@@ -78,7 +78,7 @@ class App extends Component {
           <td>{key}</td>
           <td>{userGroup[key].full_name}</td>
           <td>{userGroup[key].data.cryptocurrency_trading_symbol}</td>
-          <td><img src={`/images/${userGroup[key].data.cryptocurrency_trading_symbol}.png`}></img></td>
+          <td><img src={`images/${userGroup[key].data.cryptocurrency_trading_symbol}.png`}></img></td>
           <td>{userGroup[key].data.cryptocurrency_name}</td>
           <td>{"$" + userGroup[key].data.cryptocurrency_token_balance}</td>
           <td>{"$" + this.state.coinPrices[index]}</td>
