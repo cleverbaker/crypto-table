@@ -5,6 +5,45 @@ import './App.css';
 
 var userGroup = {
   uid_01: {
+    full_name: 'Sonny',
+    data: {
+      cryptocurrency_name: 'Monero',
+      cryptocurrency_icon_URL: '../images/xmr.png',
+      cryptocurrency_trading_symbol: 'XMR',
+      cryptocurrency_token_balance: '0.0159952'
+    }
+  },
+  uid_02: {
+    full_name: 'Shannon ',
+    data: {
+      cryptocurrency_name: 'OmiseGO',
+      cryptocurrency_icon_URL: '../images/xmr.png',
+      cryptocurrency_trading_symbol: 'OMG',
+      cryptocurrency_token_balance: '0.319904'
+    }
+  },
+  uid_03: {
+    full_name: 'Moira ',
+    data: {
+      cryptocurrency_name: 'Stellar Lumens',
+      cryptocurrency_icon_URL: '../images/xmr.png',
+      cryptocurrency_trading_symbol: 'XLM',
+      cryptocurrency_token_balance: '11.9964'
+    }
+  },
+  uid_04: {
+    full_name: 'Mark',
+    data: {
+      cryptocurrency_name: 'cash',
+      cryptocurrency_icon_URL: '../images/xmr.png',
+      cryptocurrency_trading_symbol: 'ZECZ',
+      cryptocurrency_token_balance: '0.0109967'
+    }
+  }
+};
+/*
+var userGroup = {
+  uid_01: {
     full_name: 'Bob Saget',
     data: {
       cryptocurrency_name: 'Monero',
@@ -32,6 +71,7 @@ var userGroup = {
     }
   }
 };
+*/
   
 class App extends Component {
   constructor(props) {
@@ -40,6 +80,7 @@ class App extends Component {
     this.state = {
       coinPrices: [],
       coinHistory: [],
+      usd_balance: [],
     }
   }
 
@@ -47,8 +88,13 @@ class App extends Component {
     axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=XMR,BAT,EOS&tsyms=USD')
       .then(res => {
         const coinPrices = Object.keys(res.data).map(key => res.data[key].USD)
+        const usd_balance = Object.keys(res.data).map(key => res.data[key].USD)
+
         this.setState({ coinPrices });
         console.log(this.state.coinPrices)
+
+        this.setState({ usd_balance });
+        console.log(this.state.usd_balance)
       });
 
     // Feb 18, 2018 Monero Price
@@ -76,15 +122,16 @@ class App extends Component {
       return (
         <tr>
           <td>{key}</td>
-          <td>{userGroup[key].full_name}</td>
-          <td>{userGroup[key].data.cryptocurrency_trading_symbol}</td>
-          <td><img src={`images/${userGroup[key].data.cryptocurrency_trading_symbol}.png`}></img></td>
-          <td>{userGroup[key].data.cryptocurrency_name}</td>
-          <td>{userGroup[key].data.cryptocurrency_token_balance}</td>
-          <td>{"$" + this.state.coinPrices[index]}</td>
-          <td>{"$" + this.state.coinHistory[index]}</td>
-          <td>{((this.state.coinPrices[index] - this.state.coinHistory[index]) / this.state.coinHistory[index] * 100).toFixed(2) + "%"}</td>
-          <td>{(this.state.coinPrices[index] - this.state.coinHistory[index]).toFixed(2)}</td>
+          <td>{userGroup[key].full_name}</td> //
+          <td>{userGroup[key].data.cryptocurrency_trading_symbol}</td> //
+          <td><img src={`images/${userGroup[key].data.cryptocurrency_trading_symbol}.png`}></img></td> //
+          <td>{userGroup[key].data.cryptocurrency_name}</td> //
+          <td>{userGroup[key].data.cryptocurrency_token_balance}</td> //
+          <td>{"$" + this.state.coinPrices[index]}</td> //
+          <td>{"USD Value $" + this.state.usd_balance[index]}</td> //
+          <td>{"$" + this.state.coinHistory[index]}</td> //
+          <td>{((this.state.coinPrices[index] - this.state.coinHistory[index]) / this.state.coinHistory[index] * 100).toFixed(2) + "%"}</td> //
+          <td>{(this.state.coinPrices[index] - this.state.coinHistory[index]).toFixed(2)}</td> //
         </tr>
       )
     });
@@ -102,7 +149,8 @@ class App extends Component {
                   <th scope="col">Coin Logo</th>
                   <th scope="col">Coin Name</th>
                   <th scope="col">Balance</th>
-                  <th scope="col">Current Value</th>
+                  <th scope="col">Current Token Price</th>
+                  <th scope="col">USD Balance Value</th>
                   <th scope="col">Past Value</th>
                   <th scope="col">Percent Difference</th>
                   <th scope="col">Value of Change</th>
